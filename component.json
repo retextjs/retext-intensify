@@ -1,0 +1,28 @@
+{
+  "name": "retext-intensify",
+  "version": "0.0.0",
+  "description": "Check for weak and mitigating wording with retext",
+  "license": "MIT",
+  "keywords": [
+    "simple",
+    "simpler",
+    "synonym",
+    "alternative",
+    "phrase",
+    "retext",
+    "plugin"
+  ],
+  "repository": "wooorm/retext-intensify",
+  "dependencies": {
+    "jonschlinkert/arr-union": "^3.0.0",
+    "wooorm/fillers": "^1.0.0",
+    "wooorm/hedges": "^1.0.0",
+    "wooorm/nlcst-to-string": "^1.1.0",
+    "wooorm/nlcst-search": "^1.0.0",
+    "wooorm/quotation": "^1.0.0",
+    "wooorm/weasels": "^1.0.0"
+  },
+  "scripts": [
+    "index.js"
+  ]
+}
