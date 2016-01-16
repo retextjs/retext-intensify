@@ -14,6 +14,7 @@
  * Dependencies.
  */
 
+var difference = require('array-differ');
 var nlcstToString = require('nlcst-to-string');
 var quotation = require('quotation');
 var search = require('nlcst-search');
@@ -26,7 +27,7 @@ var unique = require('arr-union');
  * List of patterns.
  */
 
-var patterns = unique([], fillers, hedges, weasels).sort();
+var list = unique([], fillers, hedges, weasels).sort();
 
 /*
  * Types.
@@ -47,37 +48,46 @@ messages[T_WEASEL] = 'it’s vague or ambiguous';
 messages[T_HEDGE] = 'it lessens impact';
 
 /**
- * Search `tree` for validations.
- *
- * @param {Node} tree - NLCST node.
- * @param {VFile} file - Virtual file.
- */
-function transformer(tree, file) {
-    search(tree, patterns, function (match, position, parent, phrase) {
-        var type = weasels.indexOf(phrase) !== -1 ? T_WEASEL :
-            fillers.indexOf(phrase) !== -1 ? T_FILLER :
-            T_HEDGE;
-
-        var message = file.warn([
-            'Don’t use',
-            quotation(nlcstToString(match), '“', '”') + ',',
-            messages[type]
-        ].join(' '), {
-            'start': match[0].position.start,
-            'end': match[match.length - 1].position.end
-        });
-
-        message.ruleId = type;
-        message.source = 'retext-intensify';
-    });
-}
-
-/**
  * Attacher.
  *
+ * @param {Retext} processor
+ *   - Instance.
+ * @param {Object?} [options]
+ *   - Configuration.
+ * @param {Array.<string>?} [options.ignore]
+ *   - List of phrases to _not_ warn about.
  * @return {Function} - `transformer`.
  */
-function attacher() {
+function attacher(processor, options) {
+    var ignore = (options || {}).ignore || [];
+    var phrases = difference(list, ignore);
+
+    /**
+     * Search `tree` for validations.
+     *
+     * @param {Node} tree - NLCST node.
+     * @param {VFile} file - Virtual file.
+     */
+    function transformer(tree, file) {
+        search(tree, phrases, function (match, position, parent, phrase) {
+            var type = weasels.indexOf(phrase) !== -1 ? T_WEASEL :
+                fillers.indexOf(phrase) !== -1 ? T_FILLER :
+                T_HEDGE;
+
+            var message = file.warn([
+                'Don’t use',
+                quotation(nlcstToString(match), '“', '”') + ',',
+                messages[type]
+            ].join(' '), {
+                'start': match[0].position.start,
+                'end': match[match.length - 1].position.end
+            });
+
+            message.ruleId = type;
+            message.source = 'retext-intensify';
+        });
+    }
+
     return transformer;
 }
 

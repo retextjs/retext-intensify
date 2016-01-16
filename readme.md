@@ -46,14 +46,19 @@ Yields:
 
 ## API
 
-### `retext.use(intensify)`
+### `retext.use(intensify[, options])`
 
 Check for weak and mitigating wording: [weasels][wiki-weasels],
 [hedges][wiki-hedges], and [fillers][wiki-fillers].
 
 **Parameters**
 
-*   `intensify` — This plug-in.
+*   `intensify` — This plug-in;
+
+*   `options` (`Object?`, optional):
+
+    *   `ignore` (`Array.<string>`)
+        — List of phrases to _not_ warn about.
 
 ## License
 

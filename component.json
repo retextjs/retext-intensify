@@ -15,6 +15,7 @@
   "repository": "wooorm/retext-intensify",
   "dependencies": {
     "jonschlinkert/arr-union": "^3.0.0",
+    "sindresorhus/array-differ": "^1.0.0",
     "wooorm/fillers": "^1.0.0",
     "wooorm/hedges": "^1.0.0",
     "wooorm/nlcst-to-string": "^1.1.0",
