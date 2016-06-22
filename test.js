@@ -9,11 +9,10 @@
 'use strict';
 
 /* eslint-env node */
+/* jscs:disable jsDoc */
+/* jscs:disable maximumLineLength */
 
-/*
- * Dependencies.
- */
-
+/* Dependencies. */
 var test = require('tape');
 var retext = require('retext');
 var intensify = require('./');
@@ -49,7 +48,7 @@ test('intensify', function (t) {
 
     retext()
         .use(intensify, {
-            'ignore': ['quite', 'some']
+            ignore: ['quite', 'some']
         })
         .process([
             'Some people say there are quite some ',

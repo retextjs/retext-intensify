@@ -1,5 +1,7 @@
 # retext-intensify [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
+<!--lint disable heading-increment list-item-spacing-->
+
 Check for weak and mitigating wording with [**retext**][retext].
 
 ## Installation
@@ -10,8 +12,8 @@ Check for weak and mitigating wording with [**retext**][retext].
 npm install retext-intensify
 ```
 
-**retext-intensify** is also available for [duo][duo-install], and as an
-AMD, CommonJS, and globals module, [uncompressed and compressed][releases].
+**retext-intensify** is also available as an AMD, CommonJS, and
+globals module, [uncompressed and compressed][releases].
 
 ## Usage
 
@@ -46,19 +48,14 @@ Yields:
 
 ## API
 
-### `retext.use(intensify[, options])`
+### `retext().use(intensify[, options])`
 
 Check for weak and mitigating wording: [weasels][wiki-weasels],
 [hedges][wiki-hedges], and [fillers][wiki-fillers].
 
-**Parameters**
+###### `options`
 
-*   `intensify` — This plug-in;
-
-*   `options` (`Object?`, optional):
-
-    *   `ignore` (`Array.<string>`)
-        — List of phrases to _not_ warn about.
+*   `ignore` (`Array.<string>`) — phrases _not_ to warn about.
 
 ## License
 
@@ -75,8 +72,6 @@ Check for weak and mitigating wording: [weasels][wiki-weasels],
 [codecov]: https://codecov.io/github/wooorm/retext-intensify
 
 [npm-install]: https://docs.npmjs.com/cli/install
-
-[duo-install]: http://duojs.org/#getting-started
 
 [releases]: https://github.com/wooorm/retext-intensify/releases
 

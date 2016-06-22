@@ -3,17 +3,15 @@
  * @copyright 2016 Titus Wormer
  * @license MIT
  * @module retext:intensify
- * @fileoverview Check for weak and mitigating wording.
+ * @fileoverview Warn about possible insensitive,
+ *   inconsiderate language with Retext.
  */
 
 'use strict';
 
 /* eslint-env commonjs */
 
-/*
- * Dependencies.
- */
-
+/* Dependencies. */
 var difference = require('array-differ');
 var nlcstToString = require('nlcst-to-string');
 var quotation = require('quotation');
@@ -23,24 +21,15 @@ var hedges = require('hedges');
 var weasels = require('weasels');
 var unique = require('arr-union');
 
-/*
- * List of patterns.
- */
-
+/* List of patterns. */
 var list = unique([], fillers, hedges, weasels).sort();
 
-/*
- * Types.
- */
-
+/* Types. */
 var T_FILLER = 'filler';
 var T_HEDGE = 'hedge';
 var T_WEASEL = 'weasel';
 
-/*
- * Messages.
- */
-
+/* Messages. */
 var messages = {};
 
 messages[T_FILLER] = 'it doesn’t add meaning';
@@ -79,8 +68,8 @@ function attacher(processor, options) {
                 quotation(nlcstToString(match), '“', '”') + ',',
                 messages[type]
             ].join(' '), {
-                'start': match[0].position.start,
-                'end': match[match.length - 1].position.end
+                start: match[0].position.start,
+                end: match[match.length - 1].position.end
             });
 
             message.ruleId = type;
@@ -91,8 +80,5 @@ function attacher(processor, options) {
     return transformer;
 }
 
-/*
- * Expose.
- */
-
+/* Expose. */
 module.exports = attacher;
