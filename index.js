@@ -1,27 +1,18 @@
-/**
- * @author Titus Wormer
- * @copyright 2016 Titus Wormer
- * @license MIT
- * @module retext:intensify
- * @fileoverview Warn about possible insensitive,
- *   inconsiderate language with Retext.
- */
-
 'use strict';
 
-/* eslint-env commonjs */
-
-/* Dependencies. */
 var difference = require('array-differ');
-var nlcstToString = require('nlcst-to-string');
-var quotation = require('quotation');
+var toString = require('nlcst-to-string');
 var search = require('nlcst-search');
+var position = require('unist-util-position');
+var quote = require('quotation');
 var fillers = require('fillers');
 var hedges = require('hedges');
 var weasels = require('weasels');
 var unique = require('arr-union');
 
-/* List of patterns. */
+/* Expose. */
+module.exports = intensify;
+
 var list = unique([], fillers, hedges, weasels).sort();
 
 /* Types. */
@@ -36,49 +27,32 @@ messages[T_FILLER] = 'it doesn’t add meaning';
 messages[T_WEASEL] = 'it’s vague or ambiguous';
 messages[T_HEDGE] = 'it lessens impact';
 
-/**
- * Attacher.
- *
- * @param {Retext} processor
- *   - Instance.
- * @param {Object?} [options]
- *   - Configuration.
- * @param {Array.<string>?} [options.ignore]
- *   - List of phrases to _not_ warn about.
- * @return {Function} - `transformer`.
- */
-function attacher(processor, options) {
-    var ignore = (options || {}).ignore || [];
-    var phrases = difference(list, ignore);
+/* Attacher. */
+function intensify(processor, options) {
+  var ignore = (options || {}).ignore || [];
+  var phrases = difference(list, ignore);
 
-    /**
-     * Search `tree` for validations.
-     *
-     * @param {Node} tree - NLCST node.
-     * @param {VFile} file - Virtual file.
-     */
-    function transformer(tree, file) {
-        search(tree, phrases, function (match, position, parent, phrase) {
-            var type = weasels.indexOf(phrase) !== -1 ? T_WEASEL :
-                fillers.indexOf(phrase) !== -1 ? T_FILLER :
-                T_HEDGE;
+  return transformer;
 
-            var message = file.warn([
-                'Don’t use',
-                quotation(nlcstToString(match), '“', '”') + ',',
-                messages[type]
-            ].join(' '), {
-                start: match[0].position.start,
-                end: match[match.length - 1].position.end
-            });
+  /* Search `tree` for validations. */
+  function transformer(tree, file) {
+    search(tree, phrases, searcher);
 
-            message.ruleId = type;
-            message.source = 'retext-intensify';
-        });
+    function searcher(match, index, parent, phrase) {
+      var type = T_WEASEL;
+      var message;
+
+      if (weasels.indexOf(phrase) === -1) {
+        type = fillers.indexOf(phrase) === -1 ? T_HEDGE : T_FILLER;
+      }
+
+      message = file.warn('Don’t use ' + quote(toString(match), '“', '”') + ', ' + messages[type], {
+        start: position.start(match[0]),
+        end: position.end(match[match.length - 1])
+      });
+
+      message.ruleId = type;
+      message.source = 'retext-intensify';
     }
-
-    return transformer;
+  }
 }
-
-/* Expose. */
-module.exports = attacher;
