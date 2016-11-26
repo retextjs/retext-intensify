@@ -1,36 +1,31 @@
 # retext-intensify [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
 
-<!--lint disable heading-increment list-item-spacing-->
-
 Check for weak and mitigating wording with [**retext**][retext].
 
 ## Installation
 
-[npm][npm-install]:
+[npm][]:
 
 ```bash
 npm install retext-intensify
 ```
 
-**retext-intensify** is also available as an AMD, CommonJS, and
-globals module, [uncompressed and compressed][releases].
-
 ## Usage
 
 ```js
 var retext = require('retext');
-var intensify = require('.');
+var intensify = require('retext-intensify');
 var report = require('vfile-reporter');
 
 retext()
-    .use(intensify)
-    .process([
-        'Some people say there are quite some ',
-        'problems, apparently.',
-        ''
-    ].join('\n'), function (err, file) {
-        console.log(report(file));
-    });
+  .use(intensify)
+  .process([
+    'Some people say there are quite some ',
+    'problems, apparently.',
+    ''
+  ].join('\n'), function (err, file) {
+    console.log(report(err || file));
+  });
 ```
 
 Yields:
@@ -71,9 +66,7 @@ Check for weak and mitigating wording: [weasels][wiki-weasels],
 
 [codecov]: https://codecov.io/github/wooorm/retext-intensify
 
-[npm-install]: https://docs.npmjs.com/cli/install
-
-[releases]: https://github.com/wooorm/retext-intensify/releases
+[npm]: https://docs.npmjs.com/cli/install
 
 [license]: LICENSE
 
@@ -83,6 +76,6 @@ Check for weak and mitigating wording: [weasels][wiki-weasels],
 
 [wiki-weasels]: https://en.wikipedia.org/wiki/Weasel_word
 
-[wiki-fillers]: https://en.wikipedia.org/wiki/Filler_(linguistics)
+[wiki-fillers]: https://en.wikipedia.org/wiki/Filler_%28linguistics%29
 
-[wiki-hedges]: https://en.wikipedia.org/wiki/Hedge_(linguistics)
+[wiki-hedges]: https://en.wikipedia.org/wiki/Hedge_%28linguistics%29
