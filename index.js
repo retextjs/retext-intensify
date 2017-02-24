@@ -28,7 +28,7 @@ messages[T_WEASEL] = 'it’s vague or ambiguous';
 messages[T_HEDGE] = 'it lessens impact';
 
 /* Attacher. */
-function intensify(processor, options) {
+function intensify(options) {
   var ignore = (options || {}).ignore || [];
   var phrases = difference(list, ignore);
 

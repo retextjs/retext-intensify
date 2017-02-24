@@ -36,14 +36,14 @@
     "browserify": "^14.0.0",
     "esmangle": "^1.0.1",
     "nyc": "^10.0.0",
-    "remark-cli": "^2.1.0",
-    "remark-preset-wooorm": "^1.0.0",
-    "retext": "^4.0.0",
+    "remark-cli": "^3.0.0",
+    "remark-preset-wooorm": "^2.0.0",
+    "retext": "^5.0.0",
     "tape": "^4.0.0",
     "xo": "^0.17.1"
   },
   "scripts": {
-    "build-md": "remark . --quiet --frail",
+    "build-md": "remark . -qfo",
     "build-bundle": "browserify index.js --bare -s retextIntensify > retext-intensify.js",
     "build-mangle": "esmangle retext-intensify.js > retext-intensify.min.js",
     "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
@@ -65,7 +65,6 @@
     ]
   },
   "remarkConfig": {
-    "output": true,
-    "presets": "wooorm"
+    "plugins": ["preset-wooorm"]
   }
 }
