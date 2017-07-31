@@ -12,31 +12,37 @@ npm install retext-intensify
 
 ## Usage
 
-```js
+Say we have the following file, `example.txt`:
+
+```text
+Some people say there are quite some
+problems, apparently.
+```
+
+And our script, `example.js`, looks as follows:
+
+```javascript
+var vfile = require('to-vfile');
+var report = require('vfile-reporter');
 var retext = require('retext');
 var intensify = require('retext-intensify');
-var report = require('vfile-reporter');
 
 retext()
   .use(intensify)
-  .process([
-    'Some people say there are quite some ',
-    'problems, apparently.',
-    ''
-  ].join('\n'), function (err, file) {
-    console.log(report(err || file));
+  .process(vfile.readSync('example.txt'), function (err, file) {
+    console.error(report(err || file));
   });
 ```
 
 Yields:
 
-```txt
-<stdin>
-    1:1-1:5  warning  Don’t use “Some”, it’s vague or ambiguous       weasel
-  1:13-1:16  warning  Don’t use “say”, it lessens impact              hedge
-  1:27-1:32  warning  Don’t use “quite”, it’s vague or ambiguous      weasel
-  1:33-1:37  warning  Don’t use “some”, it’s vague or ambiguous       weasel
-  2:11-2:21  warning  Don’t use “apparently”, it doesn’t add meaning  filler
+```text
+example.txt
+    1:1-1:5  warning  Don’t use “Some”, it’s vague or ambiguous       weasel  retext-intensify
+  1:13-1:16  warning  Don’t use “say”, it lessens impact              hedge   retext-intensify
+  1:27-1:32  warning  Don’t use “quite”, it’s vague or ambiguous      weasel  retext-intensify
+  1:33-1:37  warning  Don’t use “some”, it’s vague or ambiguous       weasel  retext-intensify
+  2:11-2:21  warning  Don’t use “apparently”, it doesn’t add meaning  filler  retext-intensify
 
 ⚠ 5 warnings
 ```
@@ -48,9 +54,26 @@ Yields:
 Check for weak and mitigating wording: [weasels][wiki-weasels],
 [hedges][wiki-hedges], and [fillers][wiki-fillers].
 
-###### `options`
+###### `options.ignore`
 
-*   `ignore` (`Array.<string>`) — phrases _not_ to warn about.
+phrases _not_ to warn about (`Array.<string>`).
+
+## Related
+
+*   [`retext-equality`](https://github.com/wooorm/retext-equality)
+    — Check possible insensitive, inconsiderate language
+*   [`retext-passive`](https://github.com/wooorm/retext-passive)
+    — Check passive voice
+*   [`retext-profanities`](https://github.com/wooorm/retext-profanities)
+    — Check profane and vulgar wording
+*   [`profanities`](https://github.com/wooorm/profanities)
+    — List of profane words
+*   [`hedges`](https://github.com/wooorm/hedges)
+    — List of hedge words
+*   [`fillers`](https://github.com/wooorm/fillers)
+    — List of filler words
+*   [`weasels`](https://github.com/wooorm/weasels)
+    — List of weasel words
 
 ## License
 
