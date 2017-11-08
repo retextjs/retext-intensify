@@ -66,13 +66,13 @@ phrases _not_ to warn about (`Array.<string>`).
     — Check passive voice
 *   [`retext-profanities`](https://github.com/wooorm/retext-profanities)
     — Check profane and vulgar wording
-*   [`profanities`](https://github.com/wooorm/profanities)
+*   [`profanities`](https://github.com/words/profanities)
     — List of profane words
-*   [`hedges`](https://github.com/wooorm/hedges)
+*   [`hedges`](https://github.com/words/hedges)
     — List of hedge words
-*   [`fillers`](https://github.com/wooorm/fillers)
+*   [`fillers`](https://github.com/words/fillers)
     — List of filler words
-*   [`weasels`](https://github.com/wooorm/weasels)
+*   [`weasels`](https://github.com/words/weasels)
     — List of weasel words
 
 ## License
