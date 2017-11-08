@@ -12,6 +12,7 @@ deploy:
       tags: true
       node: '8.0'
   - provider: releases
+    skip_cleanup: true
     api_key:
       secure: DSok1uNewI6WJ4cLBeW8X1EsnkwpzF0DxNx0uHTpIj8ReS5mRuV260nR0cjkAtcsbaqWTAJx/JPJDUtxFwB+0Bvmg/aAoQJ9gBW1XPI+wuoxEc5bkU/lxkDxA/Qmerx/JPEl5m2ainMKjIKSYVFjxaLYBiuN2XrCJkfx/VzH3cniG6XCSBm/HMhTvcK5PywAoFY87jy2L+S12x8qw7HmR3z5aa6JZbyauRQFpgkqmcdzZxaDChGFVqasCTVqOfmWqjGpC/ecbs6WfHGFKn8o0H4VK2EVMMbqps34Ttb2vGKxULMb5lVMCUZciGTzpRpbMcpjD9rS16rMrqZ8DhWz6nFbktlc3R46eFOFZAQFT2TkIQv5L0nrmsbshiFAVgRzwZGs9M9Ii3srMBEhCf8CqihuFJd7CDX3gEvHv6gNpSwTkiFMXa3MhVoz6KUDFfFJ66TuyIr4Nut7nyUAC1voCtDBzHf2OKIY1nletRkiPL/rZb3Us39Vk1MZbaxy3hwyrU0h9TPb5p8EwVwlfneq4lY0BttdUql1FX3MDTi38EDdFcbufw3ywTkJ/qpN5LNG9YRx0HiBH8LMkb8XD0PFkZs+nPJ3DCbCWdCuRaE4cmuJ0aciFK6G8+nltWbwbj+roctpI0P1CbpFz9+x58cXgAWc9M2vcJwnrCWX6fwT8kI=
     file:
