@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - '4.0'
-- '8.0'
+- '9.0'
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
   - provider: npm
@@ -10,7 +10,7 @@ deploy:
       secure: fXJ+3O7fYgvwL39cQFch/hBfFLPEjm4bMb/mWopM89m6CbnhIyMo1IyrcGvnzcMwoVyPEAWcYhStiCWXVBo6LzbymB0dkN6LsQNcw722W1NI8NEURu2MDA4oRC6x2Goft3PbHkh2JzTRtBtK8WL1ZseGkPOKKAdCGE6eYLUt8gFi4RFpRGwIsquIcvzXvvKbLkudE08oSa8grEQB+3FYszzMFjr3ZZOfeYJhlJFzQiRavzCWKK0ZekqNLBwL4xpxJjB1rCa6D+tTAhbwMlrayYpdyhvPTy2o2XwPAk6sLShB12eXCN2zKoMnI0YEbVLVGFQZateibrGGmQ1zhn9ccqCEnOS55dxV5+ljGYHHNqGeoNEPAHs97Qd6euvud4matDsJITVKTVM+Vs6UKBDiT7FKYUPev+Fn/7QYodsi8L+ATouXHjyCHYZWTlqArdPnOZP3qnImZow7iCkvM/ChLheRt8lmphpWsPI5bnfbvrVXfgbYNfrFI0Msmmz0C2MRcQDnjAzbUpZ6eohpCPTcC4LBJZDNlDYynMTnPflYPAjmzSc0YhPB5g7EEmmEsi38j3EjmGlWEOnaKjk6aOJig2N3hoSE35ZAbNVEGCLsgteAxy7pI7Ci1741gW5jJdiy4qeyNobDOuL41ggf8VGxRHHUuBCqxHcBGG7e5hKaYYw=
     on:
       tags: true
-      node: '8.0'
+      node: '9.0'
   - provider: releases
     skip_cleanup: true
     api_key:
@@ -20,4 +20,4 @@ deploy:
       - "retext-intensify.min.js"
     on:
       tags: true
-      node: '8.0'
+      node: '9.0'
