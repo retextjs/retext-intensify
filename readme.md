@@ -60,11 +60,11 @@ phrases _not_ to warn about (`Array.<string>`).
 
 ## Related
 
-*   [`retext-equality`](https://github.com/wooorm/retext-equality)
+*   [`retext-equality`](https://github.com/retextjs/retext-equality)
     — Check possible insensitive, inconsiderate language
-*   [`retext-passive`](https://github.com/wooorm/retext-passive)
+*   [`retext-passive`](https://github.com/retextjs/retext-passive)
     — Check passive voice
-*   [`retext-profanities`](https://github.com/wooorm/retext-profanities)
+*   [`retext-profanities`](https://github.com/retextjs/retext-profanities)
     — Check profane and vulgar wording
 *   [`profanities`](https://github.com/words/profanities)
     — List of profane words
@@ -81,13 +81,13 @@ phrases _not_ to warn about (`Array.<string>`).
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/wooorm/retext-intensify.svg
+[travis-badge]: https://img.shields.io/travis/retextjs/retext-intensify.svg
 
-[travis]: https://travis-ci.org/wooorm/retext-intensify
+[travis]: https://travis-ci.org/retextjs/retext-intensify
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/wooorm/retext-intensify.svg
+[codecov-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-intensify.svg
 
-[codecov]: https://codecov.io/github/wooorm/retext-intensify
+[codecov]: https://codecov.io/github/retextjs/retext-intensify
 
 [npm]: https://docs.npmjs.com/cli/install
 
@@ -95,7 +95,7 @@ phrases _not_ to warn about (`Array.<string>`).
 
 [author]: http://wooorm.com
 
-[retext]: https://github.com/wooorm/retext
+[retext]: https://github.com/retextjs/retext
 
 [wiki-weasels]: https://en.wikipedia.org/wiki/Weasel_word
 

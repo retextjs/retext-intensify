@@ -12,8 +12,8 @@
     "retext",
     "plugin"
   ],
-  "repository": "https://github.com/wooorm/retext-intensify",
-  "bugs": "https://github.com/wooorm/retext-intensify/issues",
+  "repository": "retextjs/retext-intensify",
+  "bugs": "https://github.com/retextjs/retext-intensify/issues",
   "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
@@ -66,6 +66,8 @@
     ]
   },
   "remarkConfig": {
-    "plugins": ["preset-wooorm"]
+    "plugins": [
+      "preset-wooorm"
+    ]
   }
 }
