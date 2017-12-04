@@ -75,6 +75,13 @@ phrases _not_ to warn about (`Array.<string>`).
 *   [`weasels`](https://github.com/words/weasels)
     — List of weasel words
 
+## Contribute
+
+See [`contribute.md` in `retextjs/retext`][contribute] for ways to get started.
+
+This organisation has a [Code of Conduct][coc].  By interacting with this
+repository, organisation, or community you agree to abide by its terms.
+
 ## License
 
 [MIT][license] © [Titus Wormer][author]
@@ -102,3 +109,7 @@ phrases _not_ to warn about (`Array.<string>`).
 [wiki-fillers]: https://en.wikipedia.org/wiki/Filler_%28linguistics%29
 
 [wiki-hedges]: https://en.wikipedia.org/wiki/Hedge_%28linguistics%29
+
+[contribute]: https://github.com/retextjs/retext/blob/master/contributing.md
+
+[coc]: https://github.com/retextjs/retext/blob/master/code-of-conduct.md
