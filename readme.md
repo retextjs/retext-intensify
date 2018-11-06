@@ -1,4 +1,4 @@
-# retext-intensify [![Build Status][travis-badge]][travis] [![Coverage Status][codecov-badge]][codecov]
+# retext-intensify [![Build][build-badge]][build] [![Coverage][coverage-badge]][coverage] [![Downloads][downloads-badge]][downloads] [![Chat][chat-badge]][chat]
 
 Check for weak and mitigating wording with [**retext**][retext].
 
@@ -89,13 +89,21 @@ repository, organisation, or community you agree to abide by its terms.
 
 <!-- Definitions -->
 
-[travis-badge]: https://img.shields.io/travis/retextjs/retext-intensify.svg
+[build-badge]: https://img.shields.io/travis/retextjs/retext-intensify.svg
 
-[travis]: https://travis-ci.org/retextjs/retext-intensify
+[build]: https://travis-ci.org/retextjs/retext-intensify
 
-[codecov-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-intensify.svg
+[coverage-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-intensify.svg
 
-[codecov]: https://codecov.io/github/retextjs/retext-intensify
+[coverage]: https://codecov.io/github/retextjs/retext-intensify
+
+[downloads-badge]: https://img.shields.io/npm/dm/retext-intensify.svg
+
+[downloads]: https://www.npmjs.com/package/retext-intensify
+
+[chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
+
+[chat]: https://spectrum.chat/unified/retext
 
 [npm]: https://docs.npmjs.com/cli/install
 
