@@ -22,16 +22,16 @@ problems, apparently.
 And our script, `example.js`, looks as follows:
 
 ```javascript
-var vfile = require('to-vfile');
-var report = require('vfile-reporter');
-var retext = require('retext');
-var intensify = require('retext-intensify');
+var vfile = require('to-vfile')
+var report = require('vfile-reporter')
+var retext = require('retext')
+var intensify = require('retext-intensify')
 
 retext()
   .use(intensify)
-  .process(vfile.readSync('example.txt'), function (err, file) {
-    console.error(report(err || file));
-  });
+  .process(vfile.readSync('example.txt'), function(err, file) {
+    console.error(report(err || file))
+  })
 ```
 
 Yields:
