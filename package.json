@@ -1,16 +1,17 @@
 {
   "name": "retext-intensify",
   "version": "3.0.2",
-  "description": "Check for weak and mitigating wording with retext",
+  "description": "retext plugin to check for weak and mitigating wording",
   "license": "MIT",
   "keywords": [
+    "unified",
+    "retext",
+    "plugin",
     "simple",
     "simpler",
     "synonym",
     "alternative",
-    "phrase",
-    "retext",
-    "plugin"
+    "phrase"
   ],
   "repository": "retextjs/retext-intensify",
   "bugs": "https://github.com/retextjs/retext-intensify/issues",
