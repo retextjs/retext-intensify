@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-- lts/boron
-- node
+  - lts/dubnium
+  - node
 after_script: bash <(curl -s https://codecov.io/bash)
 deploy:
   provider: releases
@@ -9,7 +9,7 @@ deploy:
   api_key:
     secure: KV24nzWAOXnhPJ2N270Ljo2IdkHZSEvGm+tee8w8vjalq7+BK9q1Z26lPwMFmEcbFcIfdx046gl0O/bL5pc9m0znE28okJC1P+4QvBw9RKXRf+i86iUzI8MgkPSVXmf8doQa2cO+AJFGc3YQiUEgQseUNzVK/b2yqBIn7vfyDnSV/065JjPKQ3g4IO3DQP1wS6VWA7SGDqKYvsf4bu4vAOFZ2PdGf/mdf6kqViZrB0uNLVdEnMfJ9QS/qc8rrMHcEzJiEuN0FELFnxbxtJ77qQqUqXF/5Ab80eJHwADAgA63MB/TW8ZSayg3goTq+DiJyXa+v5g5NWX/s1hTxRdT7xaUtAiTnEpn9pup/BeihaYa11l5JJdQ7bCFvKRfy0cIqIGUa6S804ibImVk8Hwawi2BHW2CE/Ov4by79lSNONddPZIDsIj0HNhp7p06jBMZEYb4Vil47Dstd/Yfs//JVoPV2cWp/LoKt5DUa2alNIQcuI34IFwe85WcKsjwDVhRyikafceP7kQ65Ndk9ASw22cJfjmoff+iK7715CvqIyfLE1H1huP795zwPeC104dgtUTVWNy9HG2mJ2saQuowUcNQDfeT2iWoewU/qQ/cEx9H2lHORh+NO4BEZRCJzAsbIZH5gUO20PZx/LwTPbnXlfuCYi0TZKPe95movw8eNh0=
   file:
-    - "retext-intensify.js"
-    - "retext-intensify.min.js"
+    - 'retext-intensify.js'
+    - 'retext-intensify.min.js'
   on:
     tags: true
