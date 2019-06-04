@@ -1,27 +1,35 @@
-# retext-intensify [![Build][build-badge]][build] [![Coverage][coverage-badge]][coverage] [![Downloads][downloads-badge]][downloads] [![Chat][chat-badge]][chat]
+# retext-intensify
 
-Check for weak and mitigating wording with [**retext**][retext].
+[![Build][build-badge]][build]
+[![Coverage][coverage-badge]][coverage]
+[![Downloads][downloads-badge]][downloads]
+[![Size][size-badge]][size]
+[![Sponsors][sponsors-badge]][collective]
+[![Backers][backers-badge]][collective]
+[![Chat][chat-badge]][chat]
 
-## Installation
+[**retext**][retext] plugin to check for weak and mitigating wording.
+
+## Install
 
 [npm][]:
 
-```bash
+```sh
 npm install retext-intensify
 ```
 
-## Usage
+## Use
 
 Say we have the following file, `example.txt`:
 
-```text
+```txt
 Some people say there are quite some
 problems, apparently.
 ```
 
-And our script, `example.js`, looks as follows:
+…and our script, `example.js`, looks as follows:
 
-```javascript
+```js
 var vfile = require('to-vfile')
 var report = require('vfile-reporter')
 var retext = require('retext')
@@ -36,7 +44,7 @@ retext()
 
 Yields:
 
-```text
+```txt
 example.txt
     1:1-1:5  warning  Don’t use “Some”, it’s vague or ambiguous       weasel  retext-intensify
   1:13-1:16  warning  Don’t use “say”, it lessens impact              hedge   retext-intensify
@@ -56,7 +64,7 @@ Check for weak and mitigating wording: [weasels][wiki-weasels],
 
 ###### `options.ignore`
 
-phrases *not* to warn about (`Array.<string>`).
+Phrases *not* to warn about (`Array.<string>`).
 
 ## Related
 
@@ -77,11 +85,13 @@ phrases *not* to warn about (`Array.<string>`).
 
 ## Contribute
 
-See [`contributing.md` in `retextjs/retext`][contributing] for ways to get
-started.
+See [`contributing.md`][contributing] in [`retextjs/.github`][health] for ways
+to get started.
+See [`support.md`][support] for ways to get help.
 
-This organisation has a [Code of Conduct][coc].  By interacting with this
-repository, organisation, or community you agree to abide by its terms.
+This project has a [Code of Conduct][coc].
+By interacting with this repository, organisation, or community you agree to
+abide by its terms.
 
 ## License
 
@@ -101,11 +111,29 @@ repository, organisation, or community you agree to abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/retext-intensify
 
+[size-badge]: https://img.shields.io/bundlephobia/minzip/retext-intensify.svg
+
+[size]: https://bundlephobia.com/result?p=retext-intensify
+
+[sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
+
+[backers-badge]: https://opencollective.com/unified/backers/badge.svg
+
+[collective]: https://opencollective.com/unified
+
 [chat-badge]: https://img.shields.io/badge/join%20the%20community-on%20spectrum-7b16ff.svg
 
 [chat]: https://spectrum.chat/unified/retext
 
 [npm]: https://docs.npmjs.com/cli/install
+
+[health]: https://github.com/retextjs/.github
+
+[contributing]: https://github.com/retextjs/.github/blob/master/contributing.md
+
+[support]: https://github.com/retextjs/.github/blob/master/support.md
+
+[coc]: https://github.com/retextjs/.github/blob/master/code-of-conduct.md
 
 [license]: license
 
@@ -118,7 +146,3 @@ repository, organisation, or community you agree to abide by its terms.
 [wiki-fillers]: https://en.wikipedia.org/wiki/Filler_%28linguistics%29
 
 [wiki-hedges]: https://en.wikipedia.org/wiki/Hedge_%28linguistics%29
-
-[contributing]: https://github.com/retextjs/retext/blob/master/contributing.md
-
-[coc]: https://github.com/retextjs/retext/blob/master/code-of-conduct.md
