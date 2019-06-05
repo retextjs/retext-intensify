@@ -45,7 +45,7 @@ function intensify(options) {
         type = fillers.indexOf(phrase) === -1 ? hedge : filler
       }
 
-      message = file.warn(
+      message = file.message(
         'Don’t use ' + quote(toString(match), '“', '”') + ', ' + messages[type],
         {
           start: position.start(match[0]),
