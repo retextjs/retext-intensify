@@ -14,17 +14,19 @@ module.exports = intensify
 
 var list = unique([], fillers, hedges, weasels).sort()
 
+var source = 'retext-intensify'
+
 // Types.
 var filler = 'filler'
 var hedge = 'hedge'
 var weasel = 'weasel'
 
-// Messages.
-var messages = {}
+// Reasons.
+var reason = {}
 
-messages[filler] = 'it doesn’t add meaning'
-messages[weasel] = 'it’s vague or ambiguous'
-messages[hedge] = 'it lessens impact'
+reason[filler] = 'it doesn’t add meaning'
+reason[weasel] = 'it’s vague or ambiguous'
+reason[hedge] = 'it lessens impact'
 
 // Attacher.
 function intensify(options) {
@@ -39,6 +41,7 @@ function intensify(options) {
 
     function searcher(match, index, parent, phrase) {
       var type = weasel
+      var actual = toString(match)
       var message
 
       if (weasels.indexOf(phrase) === -1) {
@@ -46,15 +49,16 @@ function intensify(options) {
       }
 
       message = file.message(
-        'Don’t use ' + quote(toString(match), '“', '”') + ', ' + messages[type],
+        'Don’t use ' + quote(actual, '`') + ', ' + reason[type],
         {
           start: position.start(match[0]),
           end: position.end(match[match.length - 1])
-        }
+        },
+        [source, type].join(':')
       )
 
-      message.ruleId = type
-      message.source = 'retext-intensify'
+      message.actual = actual
+      message.expected = []
     }
   }
 }
