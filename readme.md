@@ -66,6 +66,27 @@ Check for weak and mitigating wording: [weasels][wiki-weasels],
 
 Phrases *not* to warn about (`Array.<string>`).
 
+### Messages
+
+Each message is emitted as a [`VFileMessage`][message] on `file`, with the
+following fields:
+
+###### `message.source`
+
+Name of this plugin (`'retext-intensify'`).
+
+###### `message.ruleId`
+
+Category of warning (`'filler'`, `'hedge'`, or `'weasel'`)
+
+###### `message.actual`
+
+Current not ok phrase (`string`).
+
+###### `message.expected`
+
+Empty array to signal that `actual` should be removed (`[]`).
+
 ## Related
 
 *   [`retext-equality`](https://github.com/retextjs/retext-equality)
@@ -140,6 +161,8 @@ abide by its terms.
 [author]: https://wooorm.com
 
 [retext]: https://github.com/retextjs/retext
+
+[message]: https://github.com/vfile/vfile-message
 
 [wiki-weasels]: https://en.wikipedia.org/wiki/Weasel_word
 
