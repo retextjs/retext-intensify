@@ -24,7 +24,7 @@
   ],
   "dependencies": {
     "arr-union": "^3.0.0",
-    "array-differ": "^1.0.0",
+    "array-differ": "^3.0.0",
     "fillers": "^1.0.0",
     "hedges": "^1.0.0",
     "nlcst-search": "^1.0.0",
