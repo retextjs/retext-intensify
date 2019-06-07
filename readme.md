@@ -46,11 +46,11 @@ Yields:
 
 ```txt
 example.txt
-    1:1-1:5  warning  Don’t use “Some”, it’s vague or ambiguous       weasel  retext-intensify
-  1:13-1:16  warning  Don’t use “say”, it lessens impact              hedge   retext-intensify
-  1:27-1:32  warning  Don’t use “quite”, it’s vague or ambiguous      weasel  retext-intensify
-  1:33-1:37  warning  Don’t use “some”, it’s vague or ambiguous       weasel  retext-intensify
-  2:11-2:21  warning  Don’t use “apparently”, it doesn’t add meaning  filler  retext-intensify
+    1:1-1:5  warning  Don’t use `Some`, it’s vague or ambiguous       weasel  retext-intensify
+  1:13-1:16  warning  Don’t use `say`, it lessens impact              hedge   retext-intensify
+  1:27-1:32  warning  Don’t use `quite`, it’s vague or ambiguous      weasel  retext-intensify
+  1:33-1:37  warning  Don’t use `some`, it’s vague or ambiguous       weasel  retext-intensify
+  2:11-2:21  warning  Don’t use `apparently`, it doesn’t add meaning  filler  retext-intensify
 
 ⚠ 5 warnings
 ```
