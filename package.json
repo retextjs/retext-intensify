@@ -15,6 +15,10 @@
   ],
   "repository": "retextjs/retext-intensify",
   "bugs": "https://github.com/retextjs/retext-intensify/issues",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/unified"
+  },
   "author": "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)",
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
