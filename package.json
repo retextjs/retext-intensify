@@ -35,7 +35,7 @@
     "array-differ": "^3.0.0",
     "fillers": "^1.0.0",
     "hedges": "^1.0.0",
-    "nlcst-search": "^1.0.0",
+    "nlcst-search": "^2.0.0",
     "nlcst-to-string": "^2.0.0",
     "quotation": "^1.0.0",
     "unist-util-position": "^3.0.0",
