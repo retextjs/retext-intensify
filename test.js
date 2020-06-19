@@ -4,14 +4,14 @@ var test = require('tape')
 var retext = require('retext')
 var intensify = require('.')
 
-test('intensify', function(t) {
+test('intensify', function (t) {
   t.plan(3)
 
   retext()
     .use(intensify)
-    .process('Some people…', function(err, file) {
+    .process('Some people…', function (err, file) {
       t.deepEqual(
-        [err].concat(file.messages),
+        [err].concat(JSON.parse(JSON.stringify(file.messages))),
         [
           null,
           {
@@ -39,7 +39,7 @@ test('intensify', function(t) {
     .use(intensify)
     .process(
       'Some people say there are quite some\nproblems, apparently.\n',
-      function(err, file) {
+      function (err, file) {
         t.deepEqual(
           [err].concat(file.messages.map(String)),
           [
@@ -59,7 +59,7 @@ test('intensify', function(t) {
     .use(intensify, {ignore: ['quite', 'some']})
     .process(
       'Some people say there are quite some\nproblems, apparently.\n',
-      function(err, file) {
+      function (err, file) {
         t.deepEqual(
           [err].concat(file.messages.map(String)),
           [
