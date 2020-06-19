@@ -1,3 +1,5 @@
 coverage/
 retext-intensify.js
 retext-intensify.min.js
+*.json
+*.md
