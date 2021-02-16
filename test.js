@@ -9,9 +9,9 @@ test('intensify', function (t) {
 
   retext()
     .use(intensify)
-    .process('Some people…', function (err, file) {
+    .process('Some people…', function (error, file) {
       t.deepEqual(
-        [err].concat(JSON.parse(JSON.stringify(file.messages))),
+        [error].concat(JSON.parse(JSON.stringify(file.messages))),
         [
           null,
           {
@@ -39,9 +39,9 @@ test('intensify', function (t) {
     .use(intensify)
     .process(
       'Some people say there are quite some\nproblems, apparently.\n',
-      function (err, file) {
+      function (error, file) {
         t.deepEqual(
-          [err].concat(file.messages.map(String)),
+          [error].concat(file.messages.map(String)),
           [
             null,
             '1:1-1:5: Don’t use `Some`, it’s vague or ambiguous',
@@ -59,9 +59,9 @@ test('intensify', function (t) {
     .use(intensify, {ignore: ['quite', 'some']})
     .process(
       'Some people say there are quite some\nproblems, apparently.\n',
-      function (err, file) {
+      function (error, file) {
         t.deepEqual(
-          [err].concat(file.messages.map(String)),
+          [error].concat(file.messages.map(String)),
           [
             null,
             '1:13-1:16: Don’t use `say`, it lessens impact',
