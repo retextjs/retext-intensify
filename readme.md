@@ -120,9 +120,9 @@ abide by its terms.
 
 <!-- Definitions -->
 
-[build-badge]: https://img.shields.io/travis/retextjs/retext-intensify.svg
+[build-badge]: https://github.com/retextjs/retext-intensify/workflows/main/badge.svg
 
-[build]: https://travis-ci.org/retextjs/retext-intensify
+[build]: https://github.com/retextjs/retext-intensify/actions
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/retextjs/retext-intensify.svg
 
