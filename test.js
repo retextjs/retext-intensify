@@ -2,12 +2,12 @@ import test from 'tape'
 import {retext} from 'retext'
 import retextIntensify from './index.js'
 
-test('retext-intensify', function (t) {
+test('retext-intensify', (t) => {
   t.plan(3)
 
   retext()
     .use(retextIntensify)
-    .process('Some people…', function (error, file) {
+    .process('Some people…', (error, file) => {
       t.deepEqual(
         [error].concat(JSON.parse(JSON.stringify(file.messages))),
         [
@@ -37,9 +37,9 @@ test('retext-intensify', function (t) {
     .use(retextIntensify)
     .process(
       'Some people say there are quite some\nproblems, apparently.\n',
-      function (error, file) {
+      (error, file) => {
         t.deepEqual(
-          [error].concat(file.messages.map(String)),
+          [error].concat(file.messages.map((d) => String(d))),
           [
             null,
             '1:1-1:5: Don’t use `Some`, it’s vague or ambiguous',
@@ -57,9 +57,9 @@ test('retext-intensify', function (t) {
     .use(retextIntensify, {ignore: ['quite', 'some']})
     .process(
       'Some people say there are quite some\nproblems, apparently.\n',
-      function (error, file) {
+      (error, file) => {
         t.deepEqual(
-          [error].concat(file.messages.map(String)),
+          [error].concat(file.messages.map((d) => String(d))),
           [
             null,
             '1:13-1:16: Don’t use `say`, it lessens impact',

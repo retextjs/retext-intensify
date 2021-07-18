@@ -8,26 +8,20 @@ import {fillers} from 'fillers'
 import {hedges} from 'hedges'
 import {weasels} from 'weasels'
 
-var list = unique([], fillers, hedges, weasels).sort()
+const list = unique([], fillers, hedges, weasels).sort()
 
-var source = 'retext-intensify'
-
-// Types.
-var filler = 'filler'
-var hedge = 'hedge'
-var weasel = 'weasel'
+const source = 'retext-intensify'
 
 // Reasons.
-var reason = {}
+const reason = {}
 
-reason[filler] = 'it doesn’t add meaning'
-reason[weasel] = 'it’s vague or ambiguous'
-reason[hedge] = 'it lessens impact'
+reason.filler = 'it doesn’t add meaning'
+reason.weasel = 'it’s vague or ambiguous'
+reason.hedge = 'it lessens impact'
 
 // Attacher.
-export default function retextIntensify(options) {
-  var ignore = (options || {}).ignore || []
-  var phrases = difference(list, ignore)
+export default function retextIntensify(options = {}) {
+  const phrases = difference(list, options.ignore || [])
 
   return transformer
 
@@ -36,25 +30,27 @@ export default function retextIntensify(options) {
     search(tree, phrases, searcher)
 
     function searcher(match, index, parent, phrase) {
-      var type = weasel
-      var actual = toString(match)
-      var message
+      const actual = toString(match)
+      let type = 'weasel'
 
-      if (weasels.indexOf(phrase) === -1) {
-        type = fillers.indexOf(phrase) === -1 ? hedge : filler
+      if (!weasels.includes(phrase)) {
+        type = fillers.includes(phrase) ? 'filler' : 'hedge'
       }
 
-      message = file.message(
-        'Don’t use ' + quotation(actual, '`') + ', ' + reason[type],
+      Object.assign(
+        file.message(
+          'Don’t use ' + quotation(actual, '`') + ', ' + reason[type],
+          {
+            start: pointStart(match[0]),
+            end: pointEnd(match[match.length - 1])
+          },
+          [source, type].join(':')
+        ),
         {
-          start: pointStart(match[0]),
-          end: pointEnd(match[match.length - 1])
-        },
-        [source, type].join(':')
+          actual,
+          expected: []
+        }
       )
-
-      message.actual = actual
-      message.expected = []
     }
   }
 }
