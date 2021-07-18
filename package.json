@@ -38,10 +38,10 @@
     "array-differ": "^3.0.0",
     "fillers": "^2.0.0",
     "hedges": "^2.0.0",
-    "nlcst-search": "^2.0.0",
-    "nlcst-to-string": "^2.0.0",
-    "quotation": "^1.0.0",
-    "unist-util-position": "^3.0.0",
+    "nlcst-search": "^3.0.0",
+    "nlcst-to-string": "^3.0.0",
+    "quotation": "^2.0.0",
+    "unist-util-position": "^4.0.0",
     "weasels": "^2.0.0"
   },
   "devDependencies": {

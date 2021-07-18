@@ -1,12 +1,12 @@
+import unique from 'arr-union'
 import difference from 'array-differ'
-import toString from 'nlcst-to-string'
-import search from 'nlcst-search'
-import position from 'unist-util-position'
-import quote from 'quotation'
+import {pointStart, pointEnd} from 'unist-util-position'
+import {search} from 'nlcst-search'
+import {toString} from 'nlcst-to-string'
+import {quotation} from 'quotation'
 import {fillers} from 'fillers'
 import {hedges} from 'hedges'
 import {weasels} from 'weasels'
-import unique from 'arr-union'
 
 var list = unique([], fillers, hedges, weasels).sort()
 
@@ -45,10 +45,10 @@ export default function retextIntensify(options) {
       }
 
       message = file.message(
-        'Don’t use ' + quote(actual, '`') + ', ' + reason[type],
+        'Don’t use ' + quotation(actual, '`') + ', ' + reason[type],
         {
-          start: position.start(match[0]),
-          end: position.end(match[match.length - 1])
+          start: pointStart(match[0]),
+          end: pointEnd(match[match.length - 1])
         },
         [source, type].join(':')
       )
