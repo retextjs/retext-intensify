@@ -1,7 +1,5 @@
-.DS_Store
-*.log
 coverage/
 node_modules/
-retext-intensify.js
-retext-intensify.min.js
+.DS_Store
+*.log
 yarn.lock
