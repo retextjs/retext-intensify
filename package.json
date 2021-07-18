@@ -36,9 +36,6 @@
     "index.js"
   ],
   "dependencies": {
-    "@types/arr-union": "^3.1.0",
-    "arr-union": "^3.0.0",
-    "array-differ": "^3.0.0",
     "fillers": "^2.0.0",
     "hedges": "^2.0.0",
     "nlcst-search": "^3.0.0",

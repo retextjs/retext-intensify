@@ -5,8 +5,6 @@
  *   Phrases *not* to warn about.
  */
 
-import unique from 'arr-union'
-import difference from 'array-differ'
 import {pointStart, pointEnd} from 'unist-util-position'
 import {search} from 'nlcst-search'
 import {toString} from 'nlcst-to-string'
@@ -15,7 +13,7 @@ import {fillers} from 'fillers'
 import {hedges} from 'hedges'
 import {weasels} from 'weasels'
 
-const list = unique([], fillers, hedges, weasels).sort()
+const list = [...new Set([...fillers, ...hedges, ...weasels])].sort()
 
 const source = 'retext-intensify'
 
@@ -25,7 +23,9 @@ const source = 'retext-intensify'
  * @type {import('unified').Plugin<[Options?]>}
  */
 export default function retextIntensify(options = {}) {
-  const phrases = difference(list, options.ignore || [])
+  const ignore = options.ignore || []
+  const phrases =
+    ignore.length > 0 ? list.filter((d) => !ignore.includes(d)) : list
 
   return (tree, file) => {
     search(tree, phrases, (match, _, _1, phrase) => {
