@@ -1,29 +1,29 @@
 import test from 'tape'
-import retext from 'retext'
-import intensify from './index.js'
+import {retext} from 'retext'
+import retextIntensify from './index.js'
 
-test('intensify', function (t) {
+test('retext-intensify', function (t) {
   t.plan(3)
 
   retext()
-    .use(intensify)
+    .use(retextIntensify)
     .process('Some people…', function (error, file) {
       t.deepEqual(
         [error].concat(JSON.parse(JSON.stringify(file.messages))),
         [
           null,
           {
-            message: 'Don’t use `Some`, it’s vague or ambiguous',
             name: '1:1-1:5',
+            message: 'Don’t use `Some`, it’s vague or ambiguous',
             reason: 'Don’t use `Some`, it’s vague or ambiguous',
             line: 1,
             column: 1,
-            location: {
+            source: 'retext-intensify',
+            ruleId: 'weasel',
+            position: {
               start: {line: 1, column: 1, offset: 0},
               end: {line: 1, column: 5, offset: 4}
             },
-            source: 'retext-intensify',
-            ruleId: 'weasel',
             fatal: false,
             actual: 'Some',
             expected: []
@@ -34,7 +34,7 @@ test('intensify', function (t) {
     })
 
   retext()
-    .use(intensify)
+    .use(retextIntensify)
     .process(
       'Some people say there are quite some\nproblems, apparently.\n',
       function (error, file) {
@@ -54,7 +54,7 @@ test('intensify', function (t) {
     )
 
   retext()
-    .use(intensify, {ignore: ['quite', 'some']})
+    .use(retextIntensify, {ignore: ['quite', 'some']})
     .process(
       'Some people say there are quite some\nproblems, apparently.\n',
       function (error, file) {
