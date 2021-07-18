@@ -1,8 +1,6 @@
-'use strict'
-
-var test = require('tape')
-var retext = require('retext')
-var intensify = require('.')
+import test from 'tape'
+import retext from 'retext'
+import intensify from './index.js'
 
 test('intensify', function (t) {
   t.plan(3)

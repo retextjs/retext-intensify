@@ -27,19 +27,22 @@
   "contributors": [
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
   ],
+  "sideEffects": false,
+  "type": "module",
+  "main": "index.js",
   "files": [
     "index.js"
   ],
   "dependencies": {
     "arr-union": "^3.0.0",
     "array-differ": "^3.0.0",
-    "fillers": "^1.0.0",
-    "hedges": "^1.0.0",
+    "fillers": "^2.0.0",
+    "hedges": "^2.0.0",
     "nlcst-search": "^2.0.0",
     "nlcst-to-string": "^2.0.0",
     "quotation": "^1.0.0",
     "unist-util-position": "^3.0.0",
-    "weasels": "^1.0.0"
+    "weasels": "^2.0.0"
   },
   "devDependencies": {
     "c8": "^7.0.0",
@@ -48,7 +51,7 @@
     "remark-preset-wooorm": "^8.0.0",
     "retext": "^7.0.0",
     "tape": "^5.0.0",
-    "xo": "^0.37.0"
+    "xo": "^0.39.0"
   },
   "scripts": {
     "format": "remark . -qfo && prettier . -w --loglevel warn && xo --fix",
@@ -66,8 +69,9 @@
   },
   "xo": {
     "prettier": true,
-    "esnext": false,
     "rules": {
+      "no-var": "off",
+      "prefer-arrow-callback": "off",
       "unicorn/no-array-callback-reference": "off",
       "unicorn/prefer-includes": "off"
     }

@@ -1,16 +1,12 @@
-'use strict'
-
-var difference = require('array-differ')
-var toString = require('nlcst-to-string')
-var search = require('nlcst-search')
-var position = require('unist-util-position')
-var quote = require('quotation')
-var fillers = require('fillers')
-var hedges = require('hedges')
-var weasels = require('weasels')
-var unique = require('arr-union')
-
-module.exports = intensify
+import difference from 'array-differ'
+import toString from 'nlcst-to-string'
+import search from 'nlcst-search'
+import position from 'unist-util-position'
+import quote from 'quotation'
+import {fillers} from 'fillers'
+import {hedges} from 'hedges'
+import {weasels} from 'weasels'
+import unique from 'arr-union'
 
 var list = unique([], fillers, hedges, weasels).sort()
 
@@ -29,7 +25,7 @@ reason[weasel] = 'it’s vague or ambiguous'
 reason[hedge] = 'it lessens impact'
 
 // Attacher.
-function intensify(options) {
+export default function retextIntensify(options) {
   var ignore = (options || {}).ignore || []
   var phrases = difference(list, ignore)
 
