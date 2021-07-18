@@ -7,11 +7,11 @@ test('retext-intensify', (t) => {
 
   retext()
     .use(retextIntensify)
-    .process('Some people…', (error, file) => {
+    .process('Some people…')
+    .then((file) => {
       t.deepEqual(
-        [error].concat(JSON.parse(JSON.stringify(file.messages))),
+        JSON.parse(JSON.stringify(file.messages)),
         [
-          null,
           {
             name: '1:1-1:5',
             message: 'Don’t use `Some`, it’s vague or ambiguous',
@@ -31,42 +31,36 @@ test('retext-intensify', (t) => {
         ],
         'should emit messages'
       )
-    })
+    }, t.ifErr)
 
   retext()
     .use(retextIntensify)
-    .process(
-      'Some people say there are quite some\nproblems, apparently.\n',
-      (error, file) => {
-        t.deepEqual(
-          [error].concat(file.messages.map((d) => String(d))),
-          [
-            null,
-            '1:1-1:5: Don’t use `Some`, it’s vague or ambiguous',
-            '1:13-1:16: Don’t use `say`, it lessens impact',
-            '1:27-1:32: Don’t use `quite`, it’s vague or ambiguous',
-            '1:33-1:37: Don’t use `some`, it’s vague or ambiguous',
-            '2:11-2:21: Don’t use `apparently`, it doesn’t add meaning'
-          ],
-          'should warn about weasels, fillers, and hedges'
-        )
-      }
-    )
+    .process('Some people say there are quite some\nproblems, apparently.\n')
+    .then((file) => {
+      t.deepEqual(
+        file.messages.map((d) => String(d)),
+        [
+          '1:1-1:5: Don’t use `Some`, it’s vague or ambiguous',
+          '1:13-1:16: Don’t use `say`, it lessens impact',
+          '1:27-1:32: Don’t use `quite`, it’s vague or ambiguous',
+          '1:33-1:37: Don’t use `some`, it’s vague or ambiguous',
+          '2:11-2:21: Don’t use `apparently`, it doesn’t add meaning'
+        ],
+        'should warn about weasels, fillers, and hedges'
+      )
+    }, t.ifErr)
 
   retext()
     .use(retextIntensify, {ignore: ['quite', 'some']})
-    .process(
-      'Some people say there are quite some\nproblems, apparently.\n',
-      (error, file) => {
-        t.deepEqual(
-          [error].concat(file.messages.map((d) => String(d))),
-          [
-            null,
-            '1:13-1:16: Don’t use `say`, it lessens impact',
-            '2:11-2:21: Don’t use `apparently`, it doesn’t add meaning'
-          ],
-          'should not warn for `ignore`d phrases'
-        )
-      }
-    )
+    .process('Some people say there are quite some\nproblems, apparently.\n')
+    .then((file) => {
+      t.deepEqual(
+        file.messages.map((d) => String(d)),
+        [
+          '1:13-1:16: Don’t use `say`, it lessens impact',
+          '2:11-2:21: Don’t use `apparently`, it doesn’t add meaning'
+        ],
+        'should not warn for `ignore`d phrases'
+      )
+    }, t.ifErr)
 })

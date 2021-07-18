@@ -1,3 +1,10 @@
+/**
+ * @typedef Options
+ *   Configuration.
+ * @property {string[]} [ignore]
+ *   Phrases *not* to warn about.
+ */
+
 import unique from 'arr-union'
 import difference from 'array-differ'
 import {pointStart, pointEnd} from 'unist-util-position'
@@ -12,24 +19,16 @@ const list = unique([], fillers, hedges, weasels).sort()
 
 const source = 'retext-intensify'
 
-// Reasons.
-const reason = {}
-
-reason.filler = 'it doesn’t add meaning'
-reason.weasel = 'it’s vague or ambiguous'
-reason.hedge = 'it lessens impact'
-
-// Attacher.
+/**
+ * Plugin to check for weak and mitigating wording.
+ *
+ * @type {import('unified').Plugin<[Options?]>}
+ */
 export default function retextIntensify(options = {}) {
   const phrases = difference(list, options.ignore || [])
 
-  return transformer
-
-  // Search `tree` for validations.
-  function transformer(tree, file) {
-    search(tree, phrases, searcher)
-
-    function searcher(match, index, parent, phrase) {
+  return (tree, file) => {
+    search(tree, phrases, (match, _, _1, phrase) => {
       const actual = toString(match)
       let type = 'weasel'
 
@@ -39,18 +38,19 @@ export default function retextIntensify(options = {}) {
 
       Object.assign(
         file.message(
-          'Don’t use ' + quotation(actual, '`') + ', ' + reason[type],
-          {
-            start: pointStart(match[0]),
-            end: pointEnd(match[match.length - 1])
-          },
+          'Don’t use ' +
+            quotation(actual, '`') +
+            ', ' +
+            (type === 'weasel'
+              ? 'it’s vague or ambiguous'
+              : type === 'filler'
+              ? 'it doesn’t add meaning'
+              : 'it lessens impact'),
+          {start: pointStart(match[0]), end: pointEnd(match[match.length - 1])},
           [source, type].join(':')
         ),
-        {
-          actual,
-          expected: []
-        }
+        {actual, expected: []}
       )
-    }
+    })
   }
 }
