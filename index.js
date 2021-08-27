@@ -1,4 +1,8 @@
 /**
+ * @typedef {import('nlcst').Root} Root
+ */
+
+/**
  * @typedef Options
  *   Configuration.
  * @property {string[]} [ignore]
@@ -20,7 +24,7 @@ const source = 'retext-intensify'
 /**
  * Plugin to check for weak and mitigating wording.
  *
- * @type {import('unified').Plugin<[Options?]>}
+ * @type {import('unified').Plugin<[Options?], Root>}
  */
 export default function retextIntensify(options = {}) {
   const ignore = options.ignore || []

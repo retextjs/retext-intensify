@@ -36,6 +36,7 @@
     "index.js"
   ],
   "dependencies": {
+    "@types/nlcst": "^1.0.0",
     "fillers": "^2.0.0",
     "hedges": "^2.0.0",
     "nlcst-search": "^3.0.0",
