@@ -26,7 +26,8 @@ test('retext-intensify', (t) => {
             },
             fatal: false,
             actual: 'Some',
-            expected: []
+            expected: [],
+            url: 'https://github.com/retextjs/retext-intensify#readme'
           }
         ],
         'should emit messages'
