@@ -20,6 +20,7 @@ import {weasels} from 'weasels'
 const list = [...new Set([...fillers, ...hedges, ...weasels])].sort()
 
 const source = 'retext-intensify'
+const url = 'https://github.com/retextjs/retext-intensify#readme'
 
 /**
  * Plugin to check for weak and mitigating wording.
@@ -53,7 +54,7 @@ export default function retextIntensify(options = {}) {
           {start: pointStart(match[0]), end: pointEnd(match[match.length - 1])},
           [source, type].join(':')
         ),
-        {actual, expected: []}
+        {actual, expected: [], url}
       )
     })
   }
