@@ -39,7 +39,7 @@ test('retext-intensify', (t) => {
     .process('Some people say there are quite some\nproblems, apparently.\n')
     .then((file) => {
       t.deepEqual(
-        file.messages.map((d) => String(d)),
+        file.messages.map(String),
         [
           '1:1-1:5: Don’t use `Some`, it’s vague or ambiguous',
           '1:13-1:16: Don’t use `say`, it lessens impact',
@@ -56,7 +56,7 @@ test('retext-intensify', (t) => {
     .process('Some people say there are quite some\nproblems, apparently.\n')
     .then((file) => {
       t.deepEqual(
-        file.messages.map((d) => String(d)),
+        file.messages.map(String),
         [
           '1:13-1:16: Don’t use `say`, it lessens impact',
           '2:11-2:21: Don’t use `apparently`, it doesn’t add meaning'
