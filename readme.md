@@ -8,47 +8,82 @@
 [![Backers][backers-badge]][collective]
 [![Chat][chat-badge]][chat]
 
-[**retext**][retext] plugin to check for weak and mitigating wording.
+**[retext][]** plugin to check for weak and mitigating wording.
+
+## Contents
+
+*   [What is this?](#what-is-this)
+*   [When should I use this?](#when-should-i-use-this)
+*   [Install](#install)
+*   [Use](#use)
+*   [API](#api)
+    *   [`unified().use(retextIntensify[, options])`](#unifieduseretextintensify-options)
+*   [Messages](#messages)
+*   [Types](#types)
+*   [Compatibility](#compatibility)
+*   [Related](#related)
+*   [Contribute](#contribute)
+*   [License](#license)
+
+## What is this?
+
+This package is a [unified][] ([retext][]) plugin to check for words that are
+weak: [weasels][wiki-weasels], [hedges][wiki-hedges], and
+[fillers][wiki-fillers].
+
+## When should I use this?
+
+You can opt-into this plugin when you’re dealing with content that might contain
+vague wording, and have authors that can fix that content.
 
 ## Install
 
-This package is [ESM only](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c):
-Node 12+ is needed to use it and it must be `import`ed instead of `require`d.
-
-[npm][]:
+This package is [ESM only][esm].
+In Node.js (version 12.20+, 14.14+, 16.0+, or 18.0+), install with [npm][]:
 
 ```sh
 npm install retext-intensify
 ```
 
+In Deno with [`esm.sh`][esmsh]:
+
+```js
+import retextIntensify from 'https://esm.sh/retext-intensify@6'
+```
+
+In browsers with [`esm.sh`][esmsh]:
+
+```html
+<script type="module">
+  import retextIntensify from 'https://esm.sh/retext-intensify@6?bundle'
+</script>
+```
+
 ## Use
 
-Say we have the following file, `example.txt`:
+Say our document `example.txt` contains:
 
 ```txt
 Some people say there are quite some
 problems, apparently.
 ```
 
-…and our script, `example.js`, looks as follows:
+…and our module `example.js` looks as follows:
 
 ```js
-import {readSync} from 'to-vfile'
+import {read} from 'to-vfile'
 import {reporter} from 'vfile-reporter'
 import {retext} from 'retext'
 import retextIntensify from 'retext-intensify'
 
-const file = readSync('example.txt')
-
-retext()
+cosnt file = await retext()
   .use(retextIntensify)
-  .process(file)
-  .then((file) => {
-    console.error(reporter(file))
-  })
+  .process(await read('example.txt'))
+
+console.error(reporter(file))
 ```
 
-Yields:
+…now running `node example.js` yields:
 
 ```txt
 example.txt
@@ -68,14 +103,17 @@ The default export is `retextIntensify`.
 
 ### `unified().use(retextIntensify[, options])`
 
-Check for weak and mitigating wording: [weasels][wiki-weasels],
-[hedges][wiki-hedges], and [fillers][wiki-fillers].
+Check for weak and mitigating wording.
+
+##### `options`
+
+Configuration (optional).
 
 ###### `options.ignore`
 
 Phrases *not* to warn about (`Array<string>`).
 
-### Messages
+## Messages
 
 Each message is emitted as a [`VFileMessage`][message] on `file`, with the
 following fields:
@@ -96,22 +134,34 @@ Current not ok phrase (`string`).
 
 Empty array to signal that `actual` should be removed (`[]`).
 
+## Types
+
+This package is fully typed with [TypeScript][].
+It exports the additional type `Options`.
+
+## Compatibility
+
+Projects maintained by the unified collective are compatible with all maintained
+versions of Node.js.
+As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
+Our projects sometimes work with older versions, but this is not guaranteed.
+
 ## Related
 
 *   [`retext-equality`](https://github.com/retextjs/retext-equality)
-    — Check possible insensitive, inconsiderate language
+    — check possible insensitive, inconsiderate language
 *   [`retext-passive`](https://github.com/retextjs/retext-passive)
-    — Check passive voice
+    — check passive voice
 *   [`retext-profanities`](https://github.com/retextjs/retext-profanities)
-    — Check profane and vulgar wording
+    — check profane and vulgar wording
 *   [`profanities`](https://github.com/words/profanities)
-    — List of profane words
+    — list of profane words
 *   [`hedges`](https://github.com/words/hedges)
-    — List of hedge words
+    — list of hedge words
 *   [`fillers`](https://github.com/words/fillers)
-    — List of filler words
+    — list of filler words
 *   [`weasels`](https://github.com/words/weasels)
-    — List of weasel words
+    — list of weasel words
 
 ## Contribute
 
@@ -157,17 +207,25 @@ abide by its terms.
 
 [npm]: https://docs.npmjs.com/cli/install
 
+[esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
+
+[esmsh]: https://esm.sh
+
+[typescript]: https://www.typescriptlang.org
+
 [health]: https://github.com/retextjs/.github
 
-[contributing]: https://github.com/retextjs/.github/blob/HEAD/contributing.md
+[contributing]: https://github.com/retextjs/.github/blob/main/contributing.md
 
-[support]: https://github.com/retextjs/.github/blob/HEAD/support.md
+[support]: https://github.com/retextjs/.github/blob/main/support.md
 
-[coc]: https://github.com/retextjs/.github/blob/HEAD/code-of-conduct.md
+[coc]: https://github.com/retextjs/.github/blob/main/code-of-conduct.md
 
 [license]: license
 
 [author]: https://wooorm.com
+
+[unified]: https://github.com/unifiedjs/unified
 
 [retext]: https://github.com/retextjs/retext
 
