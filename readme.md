@@ -73,7 +73,7 @@ Check for weak and mitigating wording: [weasels][wiki-weasels],
 
 ###### `options.ignore`
 
-Phrases *not* to warn about (`Array.<string>`).
+Phrases *not* to warn about (`Array<string>`).
 
 ### Messages
 
