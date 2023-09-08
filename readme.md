@@ -18,6 +18,7 @@
 *   [Use](#use)
 *   [API](#api)
     *   [`unified().use(retextIntensify[, options])`](#unifieduseretextintensify-options)
+    *   [`Options`](#options)
 *   [Messages](#messages)
 *   [Types](#types)
 *   [Compatibility](#compatibility)
@@ -39,7 +40,7 @@ vague wording, and have authors that can fix that content.
 ## Install
 
 This package is [ESM only][esm].
-In Node.js (version 12.20+, 14.14+, 16.0+, or 18.0+), install with [npm][]:
+In Node.js (version 16+), install with [npm][]:
 
 ```sh
 npm install retext-intensify
@@ -68,30 +69,30 @@ Some people say there are quite some
 problems, apparently.
 ```
 
-…and our module `example.js` looks as follows:
+…and our module `example.js` contains:
 
 ```js
-import {read} from 'to-vfile'
-import {reporter} from 'vfile-reporter'
 import {retext} from 'retext'
 import retextIntensify from 'retext-intensify'
+import {read} from 'to-vfile'
+import {reporter} from 'vfile-reporter'
 
-cosnt file = await retext()
+const file = await retext()
   .use(retextIntensify)
   .process(await read('example.txt'))
 
 console.error(reporter(file))
 ```
 
-…now running `node example.js` yields:
+…then running `node example.js` yields:
 
 ```txt
 example.txt
-    1:1-1:5  warning  Don’t use `Some`, it’s vague or ambiguous       weasel  retext-intensify
-  1:13-1:16  warning  Don’t use `say`, it lessens impact              hedge   retext-intensify
-  1:27-1:32  warning  Don’t use `quite`, it’s vague or ambiguous      weasel  retext-intensify
-  1:33-1:37  warning  Don’t use `some`, it’s vague or ambiguous       weasel  retext-intensify
-  2:11-2:21  warning  Don’t use `apparently`, it doesn’t add meaning  filler  retext-intensify
+1:1-1:5   warning Unexpected weasel (vague or ambiguous) word `Some`    weasel retext-intensify
+1:13-1:16 warning Unexpected hedge (uncertain or indecisive) word `say` hedge  retext-intensify
+1:27-1:32 warning Unexpected weasel (vague or ambiguous) word `quite`   weasel retext-intensify
+1:33-1:37 warning Unexpected weasel (vague or ambiguous) word `some`    weasel retext-intensify
+2:11-2:21 warning Unexpected filler (meaningless) word `apparently`     filler retext-intensify
 
 ⚠ 5 warnings
 ```
@@ -99,52 +100,51 @@ example.txt
 ## API
 
 This package exports no identifiers.
-The default export is `retextIntensify`.
+The default export is [`retextIntensify`][api-retext-intensify].
 
 ### `unified().use(retextIntensify[, options])`
 
 Check for weak and mitigating wording.
 
-##### `options`
+###### Parameters
 
-Configuration (optional).
+*   `options` ([`Options`][api-options], optional)
+    — configuration
 
-###### `options.ignore`
+###### Returns
 
-Phrases *not* to warn about (`Array<string>`).
+Transform ([`Transformer`][unified-transformer]).
+
+### `Options`
+
+Configuration (TypeScript type).
+
+###### Fields
+
+*   `ignore` (`Array<string>`, optional)
+    — phrases *not* to warn about
 
 ## Messages
 
-Each message is emitted as a [`VFileMessage`][message] on `file`, with the
-following fields:
-
-###### `message.source`
-
-Name of this plugin (`'retext-intensify'`).
-
-###### `message.ruleId`
-
-Category of warning (`'filler'`, `'hedge'`, or `'weasel'`)
-
-###### `message.actual`
-
-Current not ok phrase (`string`).
-
-###### `message.expected`
-
-Empty array to signal that `actual` should be removed (`[]`).
+Each message is emitted as a [`VFileMessage`][vfile-message] on `file`, with
+`source` set to `'retext-intensify'`, `ruleId` to `'filler'`, `'hedge'`, or
+`'weasel'`, `actual` to the unexpected phrase, and `expected` to an empty
+array.
 
 ## Types
 
 This package is fully typed with [TypeScript][].
-It exports the additional type `Options`.
+It exports the additional type [`Options`][api-options].
 
 ## Compatibility
 
-Projects maintained by the unified collective are compatible with all maintained
+Projects maintained by the unified collective are compatible with maintained
 versions of Node.js.
-As of now, that is Node.js 12.20+, 14.14+, 16.0+, and 18.0+.
-Our projects sometimes work with older versions, but this is not guaranteed.
+
+When we cut a new major release, we drop support for unmaintained versions of
+Node.
+This means we try to keep the current release line, `retext-intensify@^6`,
+compatible with Node.js 12.
 
 ## Related
 
@@ -191,9 +191,9 @@ abide by its terms.
 
 [downloads]: https://www.npmjs.com/package/retext-intensify
 
-[size-badge]: https://img.shields.io/bundlephobia/minzip/retext-intensify.svg
+[size-badge]: https://img.shields.io/bundlejs/size/retext-intensify
 
-[size]: https://bundlephobia.com/result?p=retext-intensify
+[size]: https://bundlejs.com/?q=retext-intensify
 
 [sponsors-badge]: https://opencollective.com/unified/sponsors/badge.svg
 
@@ -225,14 +225,20 @@ abide by its terms.
 
 [author]: https://wooorm.com
 
-[unified]: https://github.com/unifiedjs/unified
-
 [retext]: https://github.com/retextjs/retext
 
-[message]: https://github.com/vfile/vfile-message
+[unified]: https://github.com/unifiedjs/unified
+
+[unified-transformer]: https://github.com/unifiedjs/unified#transformer
+
+[vfile-message]: https://github.com/vfile/vfile-message
 
 [wiki-weasels]: https://en.wikipedia.org/wiki/Weasel_word
 
 [wiki-fillers]: https://en.wikipedia.org/wiki/Filler_%28linguistics%29
 
 [wiki-hedges]: https://en.wikipedia.org/wiki/Hedge_%28linguistics%29
+
+[api-options]: #options
+
+[api-retext-intensify]: #unifieduseretextintensify-options
