@@ -19,14 +19,14 @@ test('retext-intensify', async function (t) {
         ancestors: [],
         column: 1,
         fatal: false,
-        message: 'Don’t use `Some`, it’s vague or ambiguous',
+        message: 'Unexpected weasel (vague or ambiguous) word `Some`',
         line: 1,
         name: '1:1-1:5',
         place: {
           start: {line: 1, column: 1, offset: 0},
           end: {line: 1, column: 5, offset: 4}
         },
-        reason: 'Don’t use `Some`, it’s vague or ambiguous',
+        reason: 'Unexpected weasel (vague or ambiguous) word `Some`',
         ruleId: 'weasel',
         source: 'retext-intensify',
         actual: 'Some',
@@ -46,11 +46,11 @@ test('retext-intensify', async function (t) {
         )
 
       assert.deepEqual(file.messages.map(String), [
-        '1:1-1:5: Don’t use `Some`, it’s vague or ambiguous',
-        '1:13-1:16: Don’t use `say`, it lessens impact',
-        '1:27-1:32: Don’t use `quite`, it’s vague or ambiguous',
-        '1:33-1:37: Don’t use `some`, it’s vague or ambiguous',
-        '2:11-2:21: Don’t use `apparently`, it doesn’t add meaning'
+        '1:1-1:5: Unexpected weasel (vague or ambiguous) word `Some`',
+        '1:13-1:16: Unexpected hedge (uncertain or indecisive) word `say`',
+        '1:27-1:32: Unexpected weasel (vague or ambiguous) word `quite`',
+        '1:33-1:37: Unexpected weasel (vague or ambiguous) word `some`',
+        '2:11-2:21: Unexpected filler (meaningless) word `apparently`'
       ])
     }
   )
@@ -61,8 +61,8 @@ test('retext-intensify', async function (t) {
       .process('Some people say there are quite some\nproblems, apparently.\n')
 
     assert.deepEqual(file.messages.map(String), [
-      '1:13-1:16: Don’t use `say`, it lessens impact',
-      '2:11-2:21: Don’t use `apparently`, it doesn’t add meaning'
+      '1:13-1:16: Unexpected hedge (uncertain or indecisive) word `say`',
+      '2:11-2:21: Unexpected filler (meaningless) word `apparently`'
     ])
   })
 })
