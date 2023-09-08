@@ -49,14 +49,14 @@ npm install retext-intensify
 In Deno with [`esm.sh`][esmsh]:
 
 ```js
-import retextIntensify from 'https://esm.sh/retext-intensify@6'
+import retextIntensify from 'https://esm.sh/retext-intensify@7'
 ```
 
 In browsers with [`esm.sh`][esmsh]:
 
 ```html
 <script type="module">
-  import retextIntensify from 'https://esm.sh/retext-intensify@6?bundle'
+  import retextIntensify from 'https://esm.sh/retext-intensify@7?bundle'
 </script>
 ```
 
