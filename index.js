@@ -35,10 +35,12 @@ export default function retextIntensify(options = {}) {
   return (tree, file) => {
     search(tree, phrases, (match, _, _1, phrase) => {
       const actual = toString(match)
-      let type = 'weasel'
+      let ruleId = 'weasel'
+      const start = pointStart(match[0])
+      const end = pointEnd(match[match.length - 1])
 
       if (!weasels.includes(phrase)) {
-        type = fillers.includes(phrase) ? 'filler' : 'hedge'
+        ruleId = fillers.includes(phrase) ? 'filler' : 'hedge'
       }
 
       Object.assign(
@@ -46,13 +48,17 @@ export default function retextIntensify(options = {}) {
           'Don’t use ' +
             quotation(actual, '`') +
             ', ' +
-            (type === 'weasel'
+            (ruleId === 'weasel'
               ? 'it’s vague or ambiguous'
-              : type === 'filler'
+              : ruleId === 'filler'
               ? 'it doesn’t add meaning'
               : 'it lessens impact'),
-          {start: pointStart(match[0]), end: pointEnd(match[match.length - 1])},
-          [source, type].join(':')
+          {
+            /* c8 ignore next -- hard to test */
+            place: start && end ? {start, end} : undefined,
+            source,
+            ruleId
+          }
         ),
         {actual, expected: [], url}
       )

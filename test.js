@@ -13,18 +13,18 @@ test('retext-intensify', (t) => {
         JSON.parse(JSON.stringify(file.messages)),
         [
           {
-            name: '1:1-1:5',
-            message: 'Don’t use `Some`, it’s vague or ambiguous',
-            reason: 'Don’t use `Some`, it’s vague or ambiguous',
-            line: 1,
             column: 1,
-            source: 'retext-intensify',
-            ruleId: 'weasel',
-            position: {
+            fatal: false,
+            message: 'Don’t use `Some`, it’s vague or ambiguous',
+            line: 1,
+            name: '1:1-1:5',
+            place: {
               start: {line: 1, column: 1, offset: 0},
               end: {line: 1, column: 5, offset: 4}
             },
-            fatal: false,
+            reason: 'Don’t use `Some`, it’s vague or ambiguous',
+            ruleId: 'weasel',
+            source: 'retext-intensify',
             actual: 'Some',
             expected: [],
             url: 'https://github.com/retextjs/retext-intensify#readme'
