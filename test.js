@@ -4,26 +4,36 @@ import {retext} from 'retext'
 import retextIntensify from './index.js'
 
 test('retext-intensify', async function (t) {
+  await t.test('should expose the public api', async function () {
+    assert.deepEqual(Object.keys(await import('./index.js')).sort(), [
+      'default'
+    ])
+  })
+
   await t.test('should emit a message w/ metadata', async function () {
     const file = await retext().use(retextIntensify).process('Some people…')
 
-    assert.deepEqual(JSON.parse(JSON.stringify(file.messages[0])), {
-      column: 1,
-      fatal: false,
-      message: 'Don’t use `Some`, it’s vague or ambiguous',
-      line: 1,
-      name: '1:1-1:5',
-      place: {
-        start: {line: 1, column: 1, offset: 0},
-        end: {line: 1, column: 5, offset: 4}
-      },
-      reason: 'Don’t use `Some`, it’s vague or ambiguous',
-      ruleId: 'weasel',
-      source: 'retext-intensify',
-      actual: 'Some',
-      expected: [],
-      url: 'https://github.com/retextjs/retext-intensify#readme'
-    })
+    assert.deepEqual(
+      JSON.parse(JSON.stringify({...file.messages[0], ancestors: []})),
+      {
+        ancestors: [],
+        column: 1,
+        fatal: false,
+        message: 'Don’t use `Some`, it’s vague or ambiguous',
+        line: 1,
+        name: '1:1-1:5',
+        place: {
+          start: {line: 1, column: 1, offset: 0},
+          end: {line: 1, column: 5, offset: 4}
+        },
+        reason: 'Don’t use `Some`, it’s vague or ambiguous',
+        ruleId: 'weasel',
+        source: 'retext-intensify',
+        actual: 'Some',
+        expected: [],
+        url: 'https://github.com/retextjs/retext-intensify#readme'
+      }
+    )
   })
 
   await t.test(

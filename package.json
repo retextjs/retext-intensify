@@ -43,8 +43,8 @@
     "nlcst-search": "^4.0.0",
     "nlcst-to-string": "^4.0.0",
     "quotation": "^2.0.0",
-    "unified": "^11.0.0",
     "unist-util-position": "^5.0.0",
+    "vfile": "^6.0.1",
     "weasels": "^2.0.0"
   },
   "devDependencies": {
